@@ -53,12 +53,13 @@
             </ComboBox>
 
             <Button x:Name="checkButton" IsEnabled="False" Content="Check Code" HorizontalAlignment="Left" Margin="563,12,0,0" VerticalAlignment="Top" Width="174" Click="checkButton_Click"/>
+            <Button x:Name="hintSmallButton" IsEnabled="False" Content="Small Hint (-15)" HorizontalAlignment="Left" Margin="563,188,0,0" VerticalAlignment="Top" Width="174" Click="hintSmallButton_Click"/>
+            <Button x:Name="hintBigButton" IsEnabled="False" Content="Big Hint (-25)" HorizontalAlignment="Left" Margin="563,213,0,0" VerticalAlignment="Top" Width="174" Click="hintBigButton_Click"/>
             <Label x:Name="attemptLabel" Content="Attempt: 1" HorizontalAlignment="Left" Margin="563,57,0,0" VerticalAlignment="Top" Width="120" Height="29" IsEnabled="False" Foreground="Black"/>
             <TextBox x:Name="solutionTextBox" Visibility="Hidden" TextAlignment="Center" HorizontalAlignment="Left" Margin="246,372,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="316" Height="20" />
             <Label x:Name="timeLabel" Content="Seconds: 0" HorizontalAlignment="Left" Margin="563,75,0,0" VerticalAlignment="Top" Width="120" Height="29" IsEnabled="False" Foreground="Black"/>
             <Label x:Name="scoreLabel" Content="Score: 100" HorizontalAlignment="Left" Margin="563,93,0,0" VerticalAlignment="Top" Width="120" Height="29" IsEnabled="False" Foreground="Black"/>
             <Label x:Name="nameLabel" Content="Name: " HorizontalAlignment="Left" Margin="563,37,0,0" VerticalAlignment="Top" Width="120" Height="29" IsEnabled="False" Foreground="Black"/>
-
             <ScrollViewer Margin="0,44,242,44" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="labelsStackPannel">
                     <UniformGrid Rows="4" Columns="4" HorizontalAlignment="Stretch" VerticalAlignment="Top">

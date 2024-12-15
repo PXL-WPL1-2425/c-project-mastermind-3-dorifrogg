@@ -158,6 +158,8 @@ namespace Mastermind
                         comboBox3.IsEnabled = false;
                         comboBox4.IsEnabled = false;
                         checkButton.IsEnabled = false;
+                        hintBigButton.IsEnabled = false;
+                        hintSmallButton.IsEnabled = false;
                         ClearLabels();
                         attemptCounter = 1;
                         attemptLabel.Content = "Attempt: 1";
@@ -253,6 +255,8 @@ namespace Mastermind
             comboBox3.IsEnabled = true;
             comboBox4.IsEnabled = true;
             checkButton.IsEnabled = true;
+            hintBigButton.IsEnabled = true;
+            hintSmallButton.IsEnabled = true;
             timer.Start();
             GenerateColours(out colour1, out colour2, out colour3, out colour4);
             GenerateLabels(attemptsCounter);
@@ -428,6 +432,8 @@ namespace Mastermind
                         comboBox3.IsEnabled = false;
                         comboBox4.IsEnabled = false;
                         checkButton.IsEnabled = false;
+                        hintBigButton.IsEnabled = false;
+                        hintSmallButton.IsEnabled = false;
                         ClearLabels();
                         playerNamesList.Clear();
                         attemptCounter = 1;
@@ -559,6 +565,8 @@ namespace Mastermind
                     comboBox3.IsEnabled = false;
                     comboBox4.IsEnabled = false;
                     checkButton.IsEnabled = false;
+                    hintBigButton.IsEnabled = false;
+                    hintSmallButton.IsEnabled = false;
                     ClearLabels();
                     playerNamesList.Clear();
                     attemptCounter = 1;
@@ -719,7 +727,6 @@ namespace Mastermind
         {
             while (true)
             {
-                // Create a new Window dynamically
                 Window nameDialog = new Window
                 {
                     Title = "Enter a Name",
@@ -730,24 +737,19 @@ namespace Mastermind
                     Owner = this
                 };
 
-                // Create a StackPanel for layout
                 StackPanel panel = new StackPanel { Margin = new Thickness(10) };
 
-                // Create a TextBlock for instructions
                 TextBlock instructionText = new TextBlock
                 {
                     Text = "Please enter a name (or click 'No' to stop):",
                     Margin = new Thickness(0, 0, 0, 10)
                 };
 
-                // Create a TextBox for input
                 TextBox inputTextBox = new TextBox { HorizontalAlignment = HorizontalAlignment.Stretch };
 
-                // Create Buttons for OK and No
                 Button okButton = new Button { Content = "OK", Width = 75, Margin = new Thickness(5) };
                 Button noButton = new Button { Content = "No", Width = 75, Margin = new Thickness(5) };
 
-                // Create a horizontal StackPanel for buttons
                 StackPanel buttonPanel = new StackPanel
                 {
                     Orientation = Orientation.Horizontal,
@@ -756,57 +758,46 @@ namespace Mastermind
                 buttonPanel.Children.Add(okButton);
                 buttonPanel.Children.Add(noButton);
 
-                // Add elements to the panel
                 panel.Children.Add(instructionText);
                 panel.Children.Add(inputTextBox);
                 panel.Children.Add(buttonPanel);
 
-                // Set the panel as the content of the dialog
                 nameDialog.Content = panel;
 
-                // Flag to track if OK or No was clicked
                 bool? dialogResult = null;
 
-                // Handle OK button click
                 okButton.Click += (sender, e) =>
                 {
                     string input = inputTextBox.Text.Trim();
 
-                    // Validate input
                     if (!string.IsNullOrEmpty(input))
                     {
-                        dialogResult = true; // Set the result
-                        nameDialog.DialogResult = true; // Close the dialog
+                        dialogResult = true;
+                        nameDialog.DialogResult = true; 
                     }
                     else
                     {
                         MessageBox.Show("Name cannot be empty.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 };
-
-                // Handle No button click
                 noButton.Click += (sender, e) =>
                 {
-                    dialogResult = false; // Set the result
-                    nameDialog.DialogResult = false; // Close the dialog
+                    dialogResult = false;
+                    nameDialog.DialogResult = false;
                 };
 
-                // Show the dialog
                 dialogResult = nameDialog.ShowDialog();
 
-                // If the user clicked OK and entered a valid name
                 if (dialogResult == true)
                 {
                     string name = inputTextBox.Text.Trim();
 
-                    // If user types "no" (case-insensitive), stop the loop
                     if (string.Equals(name, "no", StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Name input stopped.", "Finished", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break; // Exit the loop
+                        break; 
                     }
 
-                    // Add the name to the list
                     playerNamesList.Add(name);
                     MessageBox.Show($"You entered: {name}. It has been added to the list.", "Name Added", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -814,9 +805,8 @@ namespace Mastermind
                 {
                     if (playerNamesList.Count > 0)
                     {
-                        // If the "No" button was clicked, break the loop
                         MessageBox.Show("Name input stopped.", "Finished", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break; // Exit the loop
+                        break;
                     }
                     else
                     {
@@ -825,9 +815,58 @@ namespace Mastermind
                 }
             }
 
-            // Display the final list of names
             MessageBox.Show($"Names entered: {string.Join(", ", playerNamesList)}", "Final List", MessageBoxButton.OK, MessageBoxImage.Information);
 
+        }
+
+        private void hintSmallButton_Click(object sender, RoutedEventArgs e)
+        {
+            Random rng = new Random();
+            int position = rng.Next(1, 5);
+            string colourString = string.Empty;
+            switch (position)
+            {
+                case 1:
+                    colourString = colour1;
+                    break;
+                case 2:
+                    colourString = colour2;
+                    break;
+                case 3:
+                    colourString = colour3;
+                    break;
+                case 4:
+                    colourString = colour4;
+                    break;
+            }
+            MessageBox.Show($"The colour {colourString} is present!", "Small Hint!", MessageBoxButton.OK, MessageBoxImage.Information);
+            score -= 15;
+            scoreLabel.Content = $"Score: {score}";
+        }
+
+        private void hintBigButton_Click(object sender, RoutedEventArgs e)
+        {
+            Random rng = new Random();
+            int position = rng.Next(1, 5);
+            string colourString = string.Empty;
+            switch (position)
+            {
+                case 1:
+                    colourString = colour1;
+                    break;
+                case 2:
+                    colourString = colour2;
+                    break;
+                case 3:
+                    colourString = colour3;
+                    break;
+                case 4:
+                    colourString = colour4;
+                    break;
+            }
+            MessageBox.Show($"The colour {colourString} is present on position {position}!", "Big Hint!", MessageBoxButton.OK, MessageBoxImage.Information);
+            score -= 25;
+            scoreLabel.Content = $"Score: {score}";
         }
     }
 }
