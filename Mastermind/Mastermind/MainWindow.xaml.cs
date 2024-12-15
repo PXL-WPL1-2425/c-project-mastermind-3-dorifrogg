@@ -487,15 +487,18 @@ namespace Mastermind
                         if (borderList[i] == "DarkRed")
                         {
                             label1List[indexAttempt].BorderBrush = Brushes.DarkRed;
+                            label1List[indexAttempt].ToolTip = "Red Border: Correct colour in the correct position!";
                         }
                         else if (borderList[i] == "Wheat")
                         {
                             label1List[indexAttempt].BorderBrush = Brushes.Wheat;
+                            label1List[indexAttempt].ToolTip = "White Border: Correct colour in the wrong position!";
                             score -= 1;
                         }
                         else
                         {
                             label1List[indexAttempt].BorderBrush = Brushes.Transparent;
+                            label1List[indexAttempt].ToolTip = "No Border: Colour is not present!";
                             score -= 2;
                         }
                         break;
@@ -503,15 +506,18 @@ namespace Mastermind
                         if (borderList[i] == "DarkRed")
                         {
                             label2List[indexAttempt].BorderBrush = Brushes.DarkRed;
+                            label2List[indexAttempt].ToolTip = "Red Border: Correct colour in the correct position!";
                         }
                         else if (borderList[i] == "Wheat")
                         {
                             label2List[indexAttempt].BorderBrush = Brushes.Wheat;
+                            label2List[indexAttempt].ToolTip = "White Border: Correct colour in the wrong position!";
                             score -= 1;
                         }
                         else
                         {
                             label2List[indexAttempt].BorderBrush = Brushes.Transparent;
+                            label2List[indexAttempt].ToolTip = "No Border: Colour is not present!";
                             score -= 2;
                         }
                         break;
@@ -519,15 +525,18 @@ namespace Mastermind
                         if (borderList[i] == "DarkRed")
                         {
                             label3List[indexAttempt].BorderBrush = Brushes.DarkRed;
+                            label3List[indexAttempt].ToolTip = "Red Border: Correct colour in the correct position!";
                         }
                         else if (borderList[i] == "Wheat")
                         {
                             label3List[indexAttempt].BorderBrush = Brushes.Wheat;
+                            label3List[indexAttempt].ToolTip = "White Border: Correct colour in the wrong position!";
                             score -= 1;
                         }
                         else
                         {
                             label3List[indexAttempt].BorderBrush = Brushes.Transparent;
+                            label3List[indexAttempt].ToolTip = "No Border: Colour is not present!";
                             score -= 2;
                         }
                         break;
@@ -535,15 +544,18 @@ namespace Mastermind
                         if (borderList[i] == "DarkRed")
                         {
                             label4List[indexAttempt].BorderBrush = Brushes.DarkRed;
+                            label4List[indexAttempt].ToolTip = "Red Border: Correct colour in the correct position!";
                         }
                         else if (borderList[i] == "Wheat")
                         {
                             label4List[indexAttempt].BorderBrush = Brushes.Wheat;
+                            label4List[indexAttempt].ToolTip = "White Border: Correct colour in the wrong position!";
                             score -= 1;
                         }
                         else
                         {
                             label4List[indexAttempt].BorderBrush = Brushes.Transparent;
+                            label4List[indexAttempt].ToolTip = "No Border: Colour is not present!";
                             score -= 2;
                         }
                         break;
