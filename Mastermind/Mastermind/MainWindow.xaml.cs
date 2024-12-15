@@ -147,8 +147,8 @@ namespace Mastermind
                     playerCounter++;
                     if (playerCounter >= playerNamesList.Count)
                     {
-                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nYou were the last player in the list.", "FAILED", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         timer.Stop();
+                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nYou were the last player in the list.", "FAILED", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         highscores[playerCounter - 1, 0] = playerNamesList[playerCounter - 1];
                         highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                         highscores[playerCounter - 1, 2] = "0";
@@ -171,12 +171,13 @@ namespace Mastermind
                         comboBox4.SelectedIndex = -1;
                         playerNamesList.Clear();
                         playerCounter = 0;
+                        nameLabel.Content = "Name: ";
                         return;
                     }
                     else
                     {
-                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter-1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         timer.Stop();
+                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter-1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         highscores[playerCounter - 1, 0] = playerNamesList[playerCounter-1];
                         highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                         highscores[playerCounter - 1, 2] = "0";
@@ -262,6 +263,7 @@ namespace Mastermind
             timeLabel.Content = "Seconds: 0";
             score = 100;
             scoreLabel.Content = "Score: 100";
+            nameLabel.Content = $"Name: {playerNamesList[playerCounter]}";
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
             comboBox3.SelectedIndex = -1;
@@ -415,8 +417,8 @@ namespace Mastermind
                     playerCounter++;
                     if (playerCounter >= playerNamesList.Count)
                     {
-                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nYou were the last player in the list.", "FAILED", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         timer.Stop();
+                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nYou were the last player in the list.", "FAILED", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         highscores[playerCounter - 1, 0] = playerNamesList[playerCounter - 1];
                         highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                         highscores[playerCounter - 1, 2] = "0";
@@ -439,12 +441,13 @@ namespace Mastermind
                         comboBox3.SelectedIndex = -1;
                         comboBox4.SelectedIndex = -1;
                         playerCounter = 0;
+                        nameLabel.Content = "Name: ";
                         return;
                     }
                     else
                     {
-                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter - 1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         timer.Stop();
+                        MessageBoxResult result = MessageBox.Show($"You have failed! The correct code was: {colour1} {colour2} {colour3} {colour4}. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter - 1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         highscores[playerCounter - 1, 0] = playerNamesList[playerCounter - 1];
                         highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                         highscores[playerCounter - 1, 2] = "0";
@@ -545,8 +548,8 @@ namespace Mastermind
                 playerCounter++;
                 if (playerCounter >= playerNamesList.Count)
                 {
-                    MessageBox.Show($"The correct code has been found in {attemptCounter.ToString()} attempts. \nYou were the last player in the list.", "Winner", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     timer.Stop();
+                    MessageBox.Show($"The correct code has been found in {attemptCounter.ToString()} attempts. \nYou were the last player in the list.", "Winner", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     highscores[playerCounter - 1, 0] = playerNamesList[playerCounter - 1];
                     highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                     highscores[playerCounter - 1, 2] = score.ToString();
@@ -569,12 +572,13 @@ namespace Mastermind
                     comboBox3.SelectedIndex = -1;
                     comboBox4.SelectedIndex = -1;
                     playerCounter = 0;
+                    nameLabel.Content = "Name: ";
                     return;
                 }
                 else
                 {
-                    MessageBox.Show($"The correct code has been found in {attemptCounter.ToString()} attempts.. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter - 1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     timer.Stop();
+                    MessageBox.Show($"The correct code has been found in {attemptCounter.ToString()} attempts.. \nNow it's {playerNamesList[playerCounter]}'s turn.", $"{playerNamesList[playerCounter - 1]}", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     highscores[playerCounter - 1, 0] = playerNamesList[playerCounter - 1];
                     highscores[playerCounter - 1, 1] = (attemptCounter - 1).ToString();
                     highscores[playerCounter - 1, 2] = score.ToString();
@@ -715,6 +719,7 @@ namespace Mastermind
         {
             while (true)
             {
+                // Create a new Window dynamically
                 Window nameDialog = new Window
                 {
                     Title = "Enter a Name",
@@ -725,43 +730,53 @@ namespace Mastermind
                     Owner = this
                 };
 
+                // Create a StackPanel for layout
                 StackPanel panel = new StackPanel { Margin = new Thickness(10) };
 
+                // Create a TextBlock for instructions
                 TextBlock instructionText = new TextBlock
                 {
-                    Text = "Please enter a name (or type 'no' to stop):",
+                    Text = "Please enter a name (or click 'No' to stop):",
                     Margin = new Thickness(0, 0, 0, 10)
                 };
 
+                // Create a TextBox for input
                 TextBox inputTextBox = new TextBox { HorizontalAlignment = HorizontalAlignment.Stretch };
 
+                // Create Buttons for OK and No
                 Button okButton = new Button { Content = "OK", Width = 75, Margin = new Thickness(5) };
-                Button cancelButton = new Button { Content = "Cancel", Width = 75, Margin = new Thickness(5) };
+                Button noButton = new Button { Content = "No", Width = 75, Margin = new Thickness(5) };
 
+                // Create a horizontal StackPanel for buttons
                 StackPanel buttonPanel = new StackPanel
                 {
                     Orientation = Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Right
                 };
                 buttonPanel.Children.Add(okButton);
-                buttonPanel.Children.Add(cancelButton);
+                buttonPanel.Children.Add(noButton);
 
+                // Add elements to the panel
                 panel.Children.Add(instructionText);
                 panel.Children.Add(inputTextBox);
                 panel.Children.Add(buttonPanel);
 
+                // Set the panel as the content of the dialog
                 nameDialog.Content = panel;
 
+                // Flag to track if OK or No was clicked
                 bool? dialogResult = null;
 
+                // Handle OK button click
                 okButton.Click += (sender, e) =>
                 {
                     string input = inputTextBox.Text.Trim();
 
+                    // Validate input
                     if (!string.IsNullOrEmpty(input))
                     {
-                        dialogResult = true;
-                        nameDialog.DialogResult = true;
+                        dialogResult = true; // Set the result
+                        nameDialog.DialogResult = true; // Close the dialog
                     }
                     else
                     {
@@ -769,35 +784,50 @@ namespace Mastermind
                     }
                 };
 
-                cancelButton.Click += (sender, e) =>
+                // Handle No button click
+                noButton.Click += (sender, e) =>
                 {
-                    dialogResult = false;
-                    nameDialog.DialogResult = false;
+                    dialogResult = false; // Set the result
+                    nameDialog.DialogResult = false; // Close the dialog
                 };
 
+                // Show the dialog
                 dialogResult = nameDialog.ShowDialog();
 
+                // If the user clicked OK and entered a valid name
                 if (dialogResult == true)
                 {
                     string name = inputTextBox.Text.Trim();
 
+                    // If user types "no" (case-insensitive), stop the loop
                     if (string.Equals(name, "no", StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Name input stopped.", "Finished", MessageBoxButton.OK, MessageBoxImage.Information);
-                        break;
+                        break; // Exit the loop
                     }
 
+                    // Add the name to the list
                     playerNamesList.Add(name);
                     MessageBox.Show($"You entered: {name}. It has been added to the list.", "Name Added", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Input process canceled.", "Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
-                    break; 
+                    if (playerNamesList.Count > 0)
+                    {
+                        // If the "No" button was clicked, break the loop
+                        MessageBox.Show("Name input stopped.", "Finished", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break; // Exit the loop
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter at least 1 player name before continuing.", "Not enough players", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
 
-            MessageBox.Show($"Players entered: {string.Join(", ", playerNamesList)}", "Final List", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Display the final list of names
+            MessageBox.Show($"Names entered: {string.Join(", ", playerNamesList)}", "Final List", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
     }
 }
